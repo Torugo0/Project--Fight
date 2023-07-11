@@ -1,4 +1,4 @@
 let hero = new Socerer("Python Man");
+let monster = new BigMonster("IA");
 
-console.log(hero.name)
-console.log(hero.life)
+console.log(monster.defense)
