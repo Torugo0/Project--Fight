@@ -1,4 +1,12 @@
-let hero = new Socerer("Python Man");
-let monster = new BigMonster("IA");
+let hero = new Socerer("Developer");
+let monster = new LittleMonster("Java");
 
-console.log(monster.defense)
+
+const stage = new Stage(
+    hero,
+    monster,
+    document.querySelector("#hero"),
+    document.querySelector("#monster")
+);
+
+stage.start();
