@@ -83,17 +83,44 @@ class Stage{
 
     update(){
         // Fighter 1 
-        this.fighter1El.querySelector(".name").innerHTML = `${this.fighter1.name} - ${this.fighter1.life} HP`;
+        this.fighter1El.querySelector(".name").innerHTML = `${this.fighter1.name} - ${this.fighter1.life.toFixed(0)} HP`;
         let f1Pct = (this.fighter1.life / this.fighter1.maxLife) * 100;
         this.fighter1El.querySelector(".bar").style.width = `${f1Pct}%`
 
 
         // Fighter 2
-        this.fighter2El.querySelector(".name").innerHTML = `${this.fighter2.name} - ${this.fighter2.life} HP`;
+        this.fighter2El.querySelector(".name").innerHTML = `${this.fighter2.name} - ${this.fighter2.life.toFixed(0)} HP`;
         let f2Pct = (this.fighter2.life / this.fighter2.maxLife) * 100;
         this.fighter2El.querySelector(".bar").style.width = `${f2Pct}%`
     }
     doAttack(attacking, attacked){
-        console.log(`${attacking.name} está atacando ${attacked.name}`);
+        if(this.fighter1.life <= 0){
+            console.log(`Oh no, the ${this.fighter2.name} destroyed the ${this.fighter1.name}!!`);
+            return;
+        }else if (this.fighter2.life <= 0){
+            console.log(`YES, our biggest hero ${this.fighter1.name} destroyed the ${this.fighter2.name} !!`);
+            return;
+        };
+
+        // Attack
+        let attackFactor = (Math.random() * 2);
+        let actualAttack = (attacking.attack * attackFactor).toFixed(0);
+        //console.log(`${attacking.name} attacked with ${actualAttack} of damage`)
+
+        // Defense
+        let defenseFactor = (Math.random() * 2);
+        let actualDefense = (attacked.defense * defenseFactor).toFixed(0);
+        //console.log(`${attacked.name} defended himself with ${actualDefense}`)
+
+        if(actualAttack > actualDefense){
+            attacked.life -= actualAttack;
+            console.log(`${attacking.name} did ${actualAttack} damage to ${attacked.name}`)
+            
+        }else{
+            console.log(`${attacked.name} defended himself !!`)
+        }
+
+
+        this.update();
     }
 }

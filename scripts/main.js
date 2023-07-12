@@ -1,5 +1,6 @@
 let hero = new Socerer("Developer");
 let monster = new LittleMonster("Java");
+let boss = new BigMonster("IA");
 
 
 const stage = new Stage(
